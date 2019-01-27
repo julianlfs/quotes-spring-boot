@@ -20,7 +20,6 @@ public class Quote {
     @Column(name = "detail")
     private String quote;
 
-
 	public Integer getId() {
 		return id;
 	}

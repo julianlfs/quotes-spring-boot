@@ -1,18 +1,16 @@
 package challenge;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 @Repository
-public interface QuoteRepository extends CrudRepository<Quote, Integer> {
-
-    Quote findQuoteById(Integer id);
+public interface QuoteRepository extends PagingAndSortingRepository<Quote, Integer> {
 
     List<Quote> findQuoteByActorContains(String actor);
 
-    Quote findQuoteByIdBetween(Integer start, Integer end);
+    Page<Quote> findAll(Pageable pageable);
 }
