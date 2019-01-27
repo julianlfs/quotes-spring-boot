@@ -30,6 +30,9 @@ public class QuoteServiceImpl implements QuoteService {
     public Quote getQuoteByActor(String actor) {
         List<Quote> quoteByActor = repository.findQuoteByActorContains(actor);
 
+        if (quoteByActor.size() == 0)
+            return null;
+
         return quoteByActor.get(randomize(quoteByActor.size()));
     }
 

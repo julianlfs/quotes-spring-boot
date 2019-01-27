@@ -12,7 +12,6 @@ import javax.persistence.Table;
 public class Quote {
 
     @Id
-    @JsonIgnore
     private Integer id;
 
     private String actor;
