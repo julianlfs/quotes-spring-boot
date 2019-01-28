@@ -19,6 +19,7 @@ repositories {
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+version = 0.1
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
@@ -26,4 +27,15 @@ dependencies {
     compile("javax.xml.bind:jaxb-api:2.3.0")
     compile("com.h2database:h2")
     testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+task uberJar(type: Jar) {
+    appendix = 'uber'
+
+    from sourceSets.main.output
+
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    }
 }
